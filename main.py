@@ -18,6 +18,7 @@ while True:
     for a in s:
         if a.type == pygame.QUIT:
             exit()
+
         if a.type == pygame.KEYDOWN and a.key != pygame.K_SPACE:
             q = a.key
             t = str(q)
@@ -27,14 +28,18 @@ while True:
         if a.type == pygame.KEYDOWN and a.key == pygame.K_SPACE:
             rr = b.render("probel", True, [200, 200, 201])
             e.blit(rr, [500, 350])
-        if a.type == pygame.MOUSEBUTTONDOWN:
-            # print()
-            x = "x = "
-            c = a.pos
-            t = str(c)
-            rrr = b.render("click " + x + t, True, [200, 200, 201])
-            e.blit(rrr, [random.randint(100, 900), random.randint(100, 700)])
 
+        if a.type == pygame.MOUSEBUTTONDOWN:
+            t = str(a.pos[0])
+            t2 = str(a.pos[1])
+            rrr = b.render("click:  x = " + t + " y = " + t2, True,
+                           [random.randint(0, 250), random.randint(0, 250), random.randint(0, 250)])
+            e.blit(rrr, [a.pos[0], a.pos[1]])
+
+        if a.type == pygame.MOUSEMOTION:
+            k = a.pos
+            pygame.draw.circle(e,
+                    [random.randint(0, 250), random.randint(0, 250), random.randint(0, 250)],k,3)
         if a.type == pygame.KEYDOWN:
             print(a.key)
         if a.type == pygame.MOUSEBUTTONDOWN:
